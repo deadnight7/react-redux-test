@@ -6,19 +6,16 @@ import { connect } from 'react-redux'
 
 class App extends Component {
 
-  state = {
-    counter : 0
-  }
   render = () => {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>{this.state.counter}</h1>
+          <h1>{this.props.ctr}</h1>
           <p>
-            <p className="App-link" onClick = {() => this.increment()}>Increment</p>
-            <p className="App-link" onClick = {()=> this.decrement()}>Decrement</p>
-            <p className="App-link" onClick = {() => this.mux() }>Multiply</p>
-            <p className="App-link" onClick = {() => this.div() }>Divide</p>
+            <p className="App-link" onClick = {this.props.increment}>Increment</p>
+            <p className="App-link" onClick = {this.props.decrement}>Decrement</p>
+            <p className="App-link" onClick = {this.props.mux }>Multiply</p>
+            <p className="App-link" onClick = {this.props.div }>Divide</p>
           </p>
         </header>
       </div>
@@ -65,4 +62,23 @@ let mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps) (App);
+let mapDispatchToProps = dispatch => {
+  return {
+    increment : () => dispatch({type: "INCREMENT"}),
+    decrement : () => dispatch({type: "DECREMENT"}),
+    mux: () => {
+      dispatch ({
+        type: "MUX"
+      });
+    },
+    div: () => {
+      dispatch ({
+        type: "DIV"
+      });
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps) (App);

@@ -6,26 +6,26 @@ let initalState = {
 let reducer = (state = initalState, action) => {
     if (action.type === "INCREMENT"){
         return {
-            ...this.state,
-            counter: this.state.counter + 1
+            ...state,
+            counter: state.counter + 1
         }
     }
     if (action.type === "DECREMENT"){
         return {
-            ...this.state,
-            counter: this.state.counter + 1
+            ...state,
+            counter: state.counter - 1
         }
     }
     if (action.type === "MUX"){
         return {
-            ...this.state,
-            counter: this.state.counter + 1
+            ...state,
+            counter: state.counter * state.counter
         }
     }
     if (action.type === "DIV"){
         return {
-            ...this.state,
-            counter: this.state.counter + 1
+            ...state,
+            counter: state.counter / 2
         }
     }
     else {
